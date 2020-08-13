@@ -36,20 +36,6 @@ public class UserController {
     public Page<User> findAll(UserSearchSpecificationRequest searchSpecification, @ApiIgnore Pageable pageable) {
         return userRepository.findAll(searchSpecification, pageable);
     }
-//
-//    @ApiOperation(value = "Create new user")
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void create(@Valid @RequestBody CreateUpdateUserRequest dto) {
-//        userService.create(userMapper.mapCreateUserDto(dto));
-//    }
-//
-//    @PreAuthorize("hasAuthority('SUPER')")
-//    @ApiOperation(value = "Update existing user")
-//    @PutMapping("/{id}")
-//    public void update(@PathVariable @Min(1) Long id, @Valid @RequestBody CreateUpdateUserRequest dto) {
-//        userService.update(id, userMapper.mapCreateUserDto(dto));
-//    }
 
     @ApiOperation(value = "Delete user by ID")
     @DeleteMapping("/{id}")

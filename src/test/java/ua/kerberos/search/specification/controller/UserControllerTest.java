@@ -43,6 +43,7 @@ public class UserControllerTest {
 
         mvc.perform(get("/api/v1/users")
                 .param("role", SystemRoles.EXECUTOR.name())
+                .param("firstName", "John")
                 .accept(APPLICATION_JSON_VALUE)
                 .contentType(APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
