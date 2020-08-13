@@ -1,0 +1,55 @@
+package ua.kerberos.search.specification.controller;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import ua.kerberos.search.specification.SearchDemoApplication;
+import ua.kerberos.search.specification.entity.enumerators.SystemRoles;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest(classes = {SearchDemoApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class UserControllerTest {
+
+    @Autowired
+    protected MockMvc mvc;
+
+
+    @Test
+    public void testSearchByFirstName() throws Exception {
+
+        mvc.perform(get("/api/v1/users")
+                .param("firstName", "John")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content[0].firstName").value("John"));
+
+    }
+
+
+    @Test
+    public void testSearchByRoleId() throws Exception {
+
+        mvc.perform(get("/api/v1/users")
+                .param("role", SystemRoles.EXECUTOR.name())
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content.*").value(hasSize(5)));
+
+    }
+
+}
