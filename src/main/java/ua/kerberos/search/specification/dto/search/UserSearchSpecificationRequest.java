@@ -36,7 +36,7 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     private Long[] countryId;
 
     @ApiParam(name = "countryName", value = "Filter Users by Country name. Please use <b>region.country.id</b> for sort criteria section")
-    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainEqualFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "name")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainLikeFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "name")
     private String countryName;
 
     @ApiParam(name = "regionId", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
