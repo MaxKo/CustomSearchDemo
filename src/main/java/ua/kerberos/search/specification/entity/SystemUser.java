@@ -41,10 +41,6 @@ public class SystemUser {
 
     private LocalDate birthDate;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
-
     private boolean active;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -18,8 +18,8 @@ public class User extends SystemUser {
     private String employeeNumber;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @JoinColumn(name = "region_id")
+    private Region region;
 
     @ManyToOne
     @JoinColumn(name = "position_id")

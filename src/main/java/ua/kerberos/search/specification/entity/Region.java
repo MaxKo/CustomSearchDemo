@@ -9,14 +9,20 @@ import javax.persistence.*;
  * Created by Maksym Kovieshnikov on 13/08/2020
  */
 @Entity
-@Table(name = "DEPARTMENTS")
+@Table(name = "REGIONS")
 @Data
 @Accessors(chain = true)
-public class Department {
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
 }

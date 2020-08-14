@@ -53,4 +53,46 @@ public class UserControllerTest {
 
     }
 
+
+    @Test
+    public void testSearchByRegionId() throws Exception {
+        mvc.perform(get("/api/v1/users")
+                .param("regionId", "1")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content.*").value(hasSize(7)));
+
+    }
+
+
+    @Test
+    public void testSearchByCountryId() throws Exception {
+        mvc.perform(get("/api/v1/users")
+                .param("countryId", "1")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content.*").value(hasSize(3)));
+
+    }
+
+
+    @Test
+    public void testSearchByCountryName() throws Exception {
+        mvc.perform(get("/api/v1/users")
+                .param("countryName", "UKRAINE")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content.*").value(hasSize(3)));
+
+    }
+
 }

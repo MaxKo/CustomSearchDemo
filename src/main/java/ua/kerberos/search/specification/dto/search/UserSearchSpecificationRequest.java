@@ -31,13 +31,17 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     @ApiParam(name = "lastName", value = "Filter Users by last name")
     private String lastName;
 
-    @ApiParam(name = "countryId", value = "Filter Users by Country. Please use <b>country.id</b> for sort criteria section")
-    @JpaCriteria(propertyName = "country", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
+    @ApiParam(name = "countryId", value = "Filter Users by Country. Please use <b>region.country.id</b> for sort criteria section")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainEqualFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "id")
     private Long[] countryId;
 
-    @ApiParam(name = "departmentId", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
-    @JpaCriteria(propertyName = "department", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
-    private Long[] departmentId;
+    @ApiParam(name = "countryName", value = "Filter Users by Country name. Please use <b>region.country.id</b> for sort criteria section")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainEqualFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "name")
+    private String countryName;
+
+    @ApiParam(name = "regionId", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
+    private Long[] regionId;
 
     @ApiParam(name = "positionId", value = "Filter Users by Position. Please use <b>position.id</b> for sort criteria section")
     @JpaCriteria(propertyName = "position", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")

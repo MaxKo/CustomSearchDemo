@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ua.kerberos.search.specification.entity.*;
 import ua.kerberos.search.specification.entity.enumerators.Countries;
-import ua.kerberos.search.specification.entity.enumerators.Departments;
+import ua.kerberos.search.specification.entity.enumerators.Regions;
 import ua.kerberos.search.specification.entity.enumerators.Positions;
 import ua.kerberos.search.specification.entity.enumerators.SystemRoles;
 import ua.kerberos.search.specification.repository.*;
@@ -35,7 +35,7 @@ public class TestDataFiller {
     private final UserRepository userRepository;
 
     List<UserRole> roles;
-    List<Department> departments;
+    List<Region> regions;
     List<Country> countries;
     List<Position> positions;
 
@@ -45,8 +45,8 @@ public class TestDataFiller {
     @PostConstruct
     public void init() {
         initRoles();
-        initDepartments();
         initCountries();
+        initRegions();
         initPositions();
 
         initUsers();
@@ -56,39 +56,39 @@ public class TestDataFiller {
 
     private void initUsers() {
 
-        initUser("John", "Fridrikh", "Doe", 18, 1l, 1l, 1l, "john.doeh@email.com", 1l);
-        initUser("Thomas", "", "Selvidge",18, 1l, 1l, 1l, "Thomas.Selvidge@email.com", 2l);
-        initUser("Latosha", "", "Knick",28, 2l, 2l, 2l, "Latosha.Knick@email.com", 3l);
-        initUser("Nakia", "Fridrikh", "Wroblewski",38, 3l, 3l, 3l, "Nakia.Wroblewski@email.com", 4l);
-        initUser("Jerrica", "", "Iman",48, 1l, 4l, 4l, "Jerrica.Iman@email.com", 5l);
-        initUser("Kaila", "", "Musselman",58, 2l, 5l, 5l, "Kaila.Musselman@email.com", 2l);
-        initUser("Debrah", "Fridrikh", "Roark",68, 3l, 6l, 1l, "Debrah.Roark@email.com", 3l);
-        initUser("Tyrell", "", "Welter",19, 1l, 1l, 2l, "Tyrell.Welter@email.com", 4l);
-        initUser("Gilberto", "", "Reith",25, 2l, 2l, 3l, "Gilberto.Reith@email.com", 5l);
-        initUser("Reta", "", "Haskell",44, 3l, 3l, 4l, "Reta.Haskell@email.com", 1l);
-        initUser("Deirdre", "Fridrikh", "Innis",11, 1l, 4l, 5l, "Deirdre.Innis@email.com", 2l);
-        initUser("Philomena", "", "Benn",72, 2l, 5l, 6l, "Philomena.Benn@email.com", 3l);
-        initUser("Kanisha", "", "Layman",33, 3l, 6l, 1l, "Kanisha.Layman@email.com", 4l);
-        initUser("Sarina", "Fridrikh", "Huffines",44, 1l, 1l, 1l, "Sarina.Huffines@email.com", 5l);
-        initUser("Trista", "", "Maire",55, 2l, 2l, 2l, "Trista.Maire@email.com", 1l);
-        initUser("Susann", "el", "Urbanski",66, 1l, 3l, 2l, "Susann.Urbanski@email.com", 1l);
-        initUser("Gerry", "", "Burnes",42, 3l, 4l, 3l, "Gerry.Burnes@email.com", 2l);
-        initUser("Lucile", "", "Jent",46, 1l, 5l, 3l, "Lucile.Jent@email.com", 3l);
-        initUser("Annette", "", "Liefer",36, 2l, 6l, 4l, "Annette.Liefer@email.com", 4l);
-        initUser("Rosario", "", "Tinkler",37, 3l, 1l, 5l, "Rosario.Tinkler@email.com", 5l);
-        initUser("Latrina", "", "Grossman",29, 1l, 1l, 6l, "Latrina.Grossman@email.com", 1l);
+        initUser("John", "Fridrikh", "Doe", 18, 1l, 1l,  "john.doeh@email.com", 1l);
+        initUser("Thomas", "", "Selvidge",18, 1l, 1l,  "Thomas.Selvidge@email.com", 2l);
+        initUser("Latosha", "", "Knick",28, 2l, 2l,  "Latosha.Knick@email.com", 3l);
+        initUser("Nakia", "Fridrikh", "Wroblewski",38, 3l,  3l, "Nakia.Wroblewski@email.com", 4l);
+        initUser("Jerrica", "", "Iman",48, 1l, 4l,  "Jerrica.Iman@email.com", 5l);
+        initUser("Kaila", "", "Musselman",58, 2l, 5l,  "Kaila.Musselman@email.com", 2l);
+        initUser("Debrah", "Fridrikh", "Roark",68, 3l,  1l, "Debrah.Roark@email.com", 3l);
+        initUser("Tyrell", "", "Welter",19, 1l, 1l,  "Tyrell.Welter@email.com", 4l);
+        initUser("Gilberto", "", "Reith",25, 2l, 2l,  "Gilberto.Reith@email.com", 5l);
+        initUser("Reta", "", "Haskell",44, 3l, 3l,  "Reta.Haskell@email.com", 1l);
+        initUser("Deirdre", "Fridrikh", "Innis",11, 1l,  5l, "Deirdre.Innis@email.com", 2l);
+        initUser("Philomena", "", "Benn",72, 2l, 5l,  "Philomena.Benn@email.com", 3l);
+        initUser("Kanisha", "", "Layman",33, 3l, 6l, "Kanisha.Layman@email.com", 4l);
+        initUser("Sarina", "Fridrikh", "Huffines",44, 1l, 1l, "Sarina.Huffines@email.com", 5l);
+        initUser("Trista", "", "Maire",55, 2l, 2l,  "Trista.Maire@email.com", 1l);
+        initUser("Susann", "el", "Urbanski",66, 1l, 3l,  "Susann.Urbanski@email.com", 1l);
+        initUser("Gerry", "", "Burnes",42, 3l, 4l,  "Gerry.Burnes@email.com", 2l);
+        initUser("Lucile", "", "Jent",46, 1l, 5l,  "Lucile.Jent@email.com", 3l);
+        initUser("Annette", "", "Liefer",36, 2l, 6l,  "Annette.Liefer@email.com", 4l);
+        initUser("Rosario", "", "Tinkler",37, 3l, 1l,  "Rosario.Tinkler@email.com", 5l);
+        initUser("Latrina", "", "Grossman",29, 1l, 1l,  "Latrina.Grossman@email.com", 1l);
 
 
     }
 
-    private User initUser(String first, String middle, String last, int age, long positionId, long countryId, long departmentId, String email, long roleId) {
+    private User initUser(String first, String middle, String last, int age, long positionId, long regionId, String email, long roleId) {
         User user = new User();
-        user.setDepartment(new Department().setId(departmentId));
+        user.setRegion(new Region().setId(regionId));
         user.setPosition(new Position().setId(positionId));
-        user.setCountry(new Country().setId(countryId));
         user.setFirstName(first);
         user.setMiddleName(middle);
         user.setLastName(last);
+        user.setEmail(email);
         user.setBirthDate(LocalDate.now().minusYears(age));
         user.setAge(age);
         user.setRoles(singletonList(new UserRole().setId(roleId)));
@@ -111,15 +111,18 @@ public class TestDataFiller {
     }
 
 
-    private void initDepartments() {
-        departments = Stream
-                .of(Departments.values())
-                .map(this::saveDepartment)
+    private void initRegions() {
+        regions = Stream
+                .of(Regions.values())
+                .map(this::saveRegion)
                 .collect(toList());
     }
 
-    private Department saveDepartment(Departments department) {
-        return departmentRepository.save(new Department().setName(department.name()));
+    private Region saveRegion(Regions region) {
+        return departmentRepository
+                .save(new Region()
+                        .setName(region.name())
+                        .setCountry(new Country().setId(region.getCountryId())));
     }
 
     private void initRoles() {
