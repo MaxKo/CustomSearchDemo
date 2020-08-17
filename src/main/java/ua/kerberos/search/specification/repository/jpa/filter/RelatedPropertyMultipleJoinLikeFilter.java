@@ -13,26 +13,17 @@ import javax.persistence.criteria.Predicate;
 @NoArgsConstructor
 public class RelatedPropertyMultipleJoinLikeFilter extends AbstractInJpaFilter {
 
-    @Data
-    private class JoinContainer {
-        Join join;
-    }
 
     @Override
     public Predicate getPredicate() {
-        var j = new JoinContainer();
+        Join j = root.join(propertyChain[0], JoinType.LEFT);
 
-        for (String p : propertyChain) {
-            if (j.getJoin() == null) {
-                j.setJoin(root.join(p, JoinType.LEFT));
-            } else {
-                j.setJoin(j.getJoin().join(p, JoinType.LEFT));
-            }
+        for (int pI = 1 ; pI < propertyChain.length; pI++ ) {
+            j = j.join(propertyChain[pI], JoinType.LEFT);
         }
 
         return this
                 .criteriaBuilder
-                .like(this.criteriaBuilder.lower(j.getJoin().get(this.destinationPropertyName)), "%" + this.value.toString().toLowerCase() + "%");
-
+                .like(this.criteriaBuilder.lower(j.get(this.destinationPropertyName)), "%" + this.value.toString().toLowerCase() + "%");
     }
 }
