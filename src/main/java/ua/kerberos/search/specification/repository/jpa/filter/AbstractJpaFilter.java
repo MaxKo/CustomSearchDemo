@@ -27,6 +27,7 @@ public abstract class AbstractJpaFilter {
     protected String destinationPropertyName;
     protected boolean includeNullRelatedEntity;
     protected String[] searchAmongProperties;
+    protected String[] propertyChain;
 
     protected CriteriaQuery criteriaQuery;
     protected CriteriaBuilder criteriaBuilder;

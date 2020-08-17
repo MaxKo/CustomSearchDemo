@@ -35,17 +35,26 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainEqualFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "id")
     private Long[] countryId;
 
+//    @ApiParam(name = "countryName", value = "Filter Users by Country name. Please use <b>region.country.id</b> for sort criteria section")
+//    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainLikeFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "name")
+//    private String countryName;
+
     @ApiParam(name = "countryName", value = "Filter Users by Country name. Please use <b>region.country.id</b> for sort criteria section")
-    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyChainLikeFilter.class, relatedEntityPropertyName = "country", destinationPropertyName = "name")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyMultipleJoinLikeFilter.class, propertyChain = {"region", "country"}, destinationPropertyName = "name")
     private String countryName;
 
     @ApiParam(name = "regionId", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
     @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
     private Long[] regionId;
 
+//    @ApiParam(name = "regionName", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
+//    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyJoinLikeFilter.class, destinationPropertyName = "name")
+//    private String regionName;
+
     @ApiParam(name = "regionName", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
-    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyJoinLikeFilter.class, destinationPropertyName = "name")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyMultipleJoinLikeFilter.class, destinationPropertyName = "name", propertyChain = "region")
     private String regionName;
+
 
     @ApiParam(name = "positionId", value = "Filter Users by Position. Please use <b>position.id</b> for sort criteria section")
     @JpaCriteria(propertyName = "position", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")

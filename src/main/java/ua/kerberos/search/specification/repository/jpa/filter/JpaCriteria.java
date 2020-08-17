@@ -66,4 +66,13 @@ public @interface JpaCriteria {
      */
     String[] searchAmongProperties() default {};
 
+
+    /**
+     * Used for joining/sub-query related entity when search field placed in 2-3-n chain of relation from searched entity.
+     * first element is property of search
+     *
+     * @see ua.kerberos.search.specification.repository.jpa.filter.MultipleStringLikeFilter
+     */
+    String[] propertyChain() default {};
+
 }

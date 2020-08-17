@@ -95,9 +95,21 @@ public class UserControllerTest {
 
     }
 
-
     @Test
     public void testSearchByCountryName() throws Exception {
+        mvc.perform(get("/api/v1/users")
+                .param("countryName", "uk")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content.*").value(hasSize(7)));
+
+    }
+
+    @Test
+    public void testSearchByMultiple() throws Exception {
         mvc.perform(get("/api/v1/users")
                 .param("countryName", "UKRAINE")
                 .param("countryId", "1")

@@ -53,6 +53,7 @@ public abstract class AbstractSearchSpecification<T> implements Specification<T>
         String destinationPropertyName = EMPTY;
         boolean includeNullRelatedEntity = false;
         String[] searchAmongProperties = {};
+        String[] propertyChain = {};
 
         if (jpaCriteriaAnnotation != null) {
             handlerType = jpaCriteriaAnnotation.handlerClass().equals(JpaCriteria.DefaultFilter.class) ? handlerType : jpaCriteriaAnnotation.handlerClass();
@@ -62,6 +63,7 @@ public abstract class AbstractSearchSpecification<T> implements Specification<T>
             includeNullRelatedEntity = jpaCriteriaAnnotation.includeNullRelatedEntity();
             destinationPropertyName = jpaCriteriaAnnotation.destinationPropertyName();
             searchAmongProperties = jpaCriteriaAnnotation.searchAmongProperties();
+            propertyChain = jpaCriteriaAnnotation.propertyChain();
         }
 
         AbstractJpaFilter handler = newInstance(handlerType);
@@ -73,6 +75,7 @@ public abstract class AbstractSearchSpecification<T> implements Specification<T>
         if (searchAmongProperties.length == 0 && !CLASS.equals(propertyName)) {
             handler.setFieldType(extractFieldType(getTargetClass(), propertyName));
         }
+        handler.setPropertyChain(propertyChain);
         handler.setIncludeNullRelatedEntity(includeNullRelatedEntity);
         handler.setSearchFieldName(searchFieldName);
         handler.setDestinationPropertyName(destinationPropertyName);

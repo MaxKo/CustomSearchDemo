@@ -16,7 +16,6 @@ public class RelatedPropertyChainLikeFilter extends AbstractInJpaFilter {
 
         Join join = relatedFieldRoot.join(this.relatedEntityPropertyName, JoinType.LEFT);
 
-//        Predicate clause = this.criteriaBuilder.like(join.get(destinationPropertyName), this.value);
         Predicate clause = this.criteriaBuilder.like( this.criteriaBuilder.lower( join.get(this.destinationPropertyName)), "%" + this.value.toString().toLowerCase() + "%");
         subQuery.select(relatedFieldRoot)
                 .distinct(true)
