@@ -43,6 +43,10 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
     private Long[] regionId;
 
+    @ApiParam(name = "regionName", value = "Filter Users by Department. Please use <b>department.id</b> for sort criteria section")
+    @JpaCriteria(propertyName = "region", handlerClass = RelatedPropertyJoinLikeFilter.class, destinationPropertyName = "name")
+    private String regionName;
+
     @ApiParam(name = "positionId", value = "Filter Users by Position. Please use <b>position.id</b> for sort criteria section")
     @JpaCriteria(propertyName = "position", handlerClass = RelatedPropertyEqualFilter.class, relatedEntityPropertyName = "id")
     private Long[] positionId;
