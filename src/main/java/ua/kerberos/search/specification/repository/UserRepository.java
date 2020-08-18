@@ -9,5 +9,5 @@ import ua.kerberos.search.specification.entity.User;
  * Created by Maksym Kovieshnikov on 13/08/2020
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> /*EntityGraphJpaSpecificationExecutor<User> */ {
 }

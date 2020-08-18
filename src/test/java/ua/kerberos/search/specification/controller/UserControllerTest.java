@@ -111,7 +111,7 @@ public class UserControllerTest {
     @Test
     public void testSearchByMultiple() throws Exception {
         mvc.perform(get("/api/v1/users")
-                .param("countryName", "UKRAINE")
+                .param("countryName", "UK")
                 .param("countryId", "1")
                 .param("role", SystemRoles.EXECUTOR.name())
                 .param("firstName", "John")
