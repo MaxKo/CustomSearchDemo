@@ -1,10 +1,8 @@
 package ua.kerberos.search.specification.repository.jpa.filter;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.From;
 import javax.persistence.criteria.Predicate;
 
 /**
@@ -13,17 +11,12 @@ import javax.persistence.criteria.Predicate;
 @NoArgsConstructor
 public class RelatedPropertyMultipleJoinLikeFilter extends AbstractInJpaFilter {
 
-
     @Override
     public Predicate getPredicate() {
-        Join j = root.join(propertyChain[0], JoinType.LEFT);
-
-        for (int pI = 1 ; pI < propertyChain.length; pI++ ) {
-            j = j.join(propertyChain[pI], JoinType.LEFT);
-        }
+        From joinFrom = joinByFieldRecursive(root, propertyChain);
 
         return this
                 .criteriaBuilder
-                .like(this.criteriaBuilder.lower(j.get(this.destinationPropertyName)), "%" + this.value.toString().toLowerCase() + "%");
+                .like(this.criteriaBuilder.lower(joinFrom.get(this.destinationPropertyName)), "%" + this.value.toString().toLowerCase() + "%");
     }
 }
