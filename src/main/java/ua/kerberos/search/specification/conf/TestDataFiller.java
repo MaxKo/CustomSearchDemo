@@ -4,14 +4,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ua.kerberos.search.specification.entity.*;
-import ua.kerberos.search.specification.entity.enumerators.Countries;
-import ua.kerberos.search.specification.entity.enumerators.Regions;
-import ua.kerberos.search.specification.entity.enumerators.Positions;
-import ua.kerberos.search.specification.entity.enumerators.SystemRoles;
+import ua.kerberos.search.specification.entity.enumerators.*;
 import ua.kerberos.search.specification.repository.*;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -33,6 +31,7 @@ public class TestDataFiller {
     private final CountryRepository countryRepository;
     private final PositionRepository positionRepository;
     private final UserRepository userRepository;
+    private final UserStatusRepository userStatusRepository;
 
     List<UserRole> roles;
     List<Region> regions;
@@ -76,7 +75,8 @@ public class TestDataFiller {
         initUser("Lucile", "", "Jent",46, 1l, 5l,  "Lucile.Jent@email.com", 3l);
         initUser("Annette", "", "Liefer",36, 2l, 6l,  "Annette.Liefer@email.com", 4l);
         initUser("Rosario", "", "Tinkler",37, 3l, 1l,  "Rosario.Tinkler@email.com", 5l);
-        initUser("Latrina", "", "Grossman",29, 1l, 1l,  "Latrina.Grossman@email.com", 1l);
+        var u = initUser("Latrina", "", "Grossman",29, 1l, 1l,  "Latrina.Grossman@email.com", 1l);
+        addStatus(u, UserStatuses.NOT_ACTIVE);
 
 
     }
@@ -96,7 +96,19 @@ public class TestDataFiller {
         var result = userRepository.save(user);
         users.add(result);
 
+        user.setStatus(addStatus(user, UserStatuses.ACTIVE).getStatus());
+
         return result;
+    }
+
+    private UserStatus addStatus(User user, UserStatuses userStatus) {
+        var status = new UserStatus()
+                .setStatus(userStatus)
+                .setUser(user)
+                .setCreatedDate(LocalDateTime.now());
+
+        return userStatusRepository.save(status);
+
     }
 
     private void initCountries() {

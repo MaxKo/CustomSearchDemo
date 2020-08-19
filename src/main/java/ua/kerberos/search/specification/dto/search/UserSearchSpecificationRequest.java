@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import ua.kerberos.search.specification.entity.enumerators.SystemRoles;
 import ua.kerberos.search.specification.entity.User;
+import ua.kerberos.search.specification.entity.enumerators.UserStatuses;
 import ua.kerberos.search.specification.repository.jpa.filter.*;
 
 /**
@@ -65,4 +66,10 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     private SystemRoles[] role;
 
     private Boolean active;
+
+
+    @ApiParam(name = "status", value = "Filter Incidents by Status")
+    @JpaCriteria(propertyName = "status", handlerClass = MaxElementOfRelatedPropertyEqualFilter.class, relatedEntityPropertyName = "user", destinationPropertyName = "status", searchAmongProperties = {"ua.kerberos.search.specification.entity.UserStatus", "createdDate"})
+    private UserStatuses[] status;
+
 }

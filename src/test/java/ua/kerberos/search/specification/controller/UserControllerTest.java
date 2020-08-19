@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import ua.kerberos.search.specification.SearchDemoApplication;
 import ua.kerberos.search.specification.entity.enumerators.SystemRoles;
+import ua.kerberos.search.specification.entity.enumerators.UserStatuses;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -126,5 +127,18 @@ public class UserControllerTest {
     }
 
 
+    @Test
+    public void testSearchByStatus() throws Exception {
+
+        mvc.perform(get("/api/v1/users")
+                .param("status", UserStatuses.ACTIVE.name())
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content[0].status").value(UserStatuses.ACTIVE.name()));
+
+    }
 
 }
