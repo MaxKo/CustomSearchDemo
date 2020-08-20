@@ -72,4 +72,5 @@ public class UserSearchSpecificationRequest extends AbstractSearchSpecification<
     @JpaCriteria(propertyName = "status", handlerClass = MaxElementOfRelatedPropertyEqualFilter.class, relatedEntityPropertyName = "user", destinationPropertyName = "status", searchAmongProperties = {"ua.kerberos.search.specification.entity.UserStatus", "createdDate"})
     private UserStatuses[] status;
 
+
 }
