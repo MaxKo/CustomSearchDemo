@@ -17,7 +17,7 @@ public class RelatedPropertyEqualFilter extends AbstractInJpaFilter {
         Subquery subQuery = this.criteriaQuery.subquery(this.fieldType);
         Root relatedEntityRoot = subQuery.from(this.fieldType);
 
-        Predicate clause = calculateClause(relatedEntityRoot, this.relatedEntityPropertyName);
+        Predicate clause = calculateMultipleOrSingleEqualClause(relatedEntityRoot, this.relatedEntityPropertyName);
 
         subQuery.select(relatedEntityRoot)
                 .distinct(true)

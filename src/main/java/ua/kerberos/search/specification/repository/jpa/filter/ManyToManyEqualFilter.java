@@ -17,7 +17,7 @@ public class ManyToManyEqualFilter extends AbstractInJpaFilter {
         Root root = cq.from(this.entityType);
         Join join = root.join(this.propertyName);
 
-        Predicate pred = calculateClause(join, this.destinationPropertyName);
+        Predicate pred = calculateMultipleOrSingleEqualClause(join, this.destinationPropertyName);
 
         cq.where(pred);
 

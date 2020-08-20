@@ -33,7 +33,7 @@ public class MaxElementOfRelatedPropertyEqualFilter extends AbstractInJpaFilter 
 
         Predicate pSameSubQueryEntity = criteriaBuilder.equal(this.root, root.get(relatedEntityPropertyName));
 
-        Predicate pCondition = calculateClause(root, this.destinationPropertyName);
+        Predicate pCondition = calculateMultipleOrSingleEqualClause(root, this.destinationPropertyName);
 
         Predicate pSameEntity = criteriaBuilder.equal(root.get(maxConditionField), sq);
 

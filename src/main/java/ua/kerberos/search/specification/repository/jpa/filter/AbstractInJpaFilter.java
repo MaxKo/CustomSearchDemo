@@ -15,7 +15,7 @@ import static org.apache.commons.lang3.ArrayUtils.subarray;
 
 public abstract class AbstractInJpaFilter extends AbstractJpaFilter {
 
-    protected Predicate calculateClause(Path relatedEntityRoot, String destinationPropertyName) {
+    protected Predicate calculateMultipleOrSingleEqualClause(Path relatedEntityRoot, String destinationPropertyName) {
         if (!this.value.getClass().isArray()) {
             return this.criteriaBuilder.equal(relatedEntityRoot.get(destinationPropertyName), this.value);
         }

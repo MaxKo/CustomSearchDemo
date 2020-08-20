@@ -16,7 +16,7 @@ public class RelatedPropertyChainEqualFilter extends AbstractInJpaFilter {
 
         Join join = relatedFieldRoot.join(this.relatedEntityPropertyName, JoinType.LEFT);
 
-        Predicate clause = calculateClause(join, this.destinationPropertyName);
+        Predicate clause = calculateMultipleOrSingleEqualClause(join, this.destinationPropertyName);
 
         subQuery.select(relatedFieldRoot)
                 .distinct(true)
