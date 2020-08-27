@@ -96,7 +96,7 @@ public class TestDataFiller {
         var result = userRepository.save(user);
         users.add(result);
 
-        user.setStatus(addStatus(user, UserStatuses.ACTIVE).getStatus());
+        //user.setStatus(addStatus(user, UserStatuses.ACTIVE).getStatus());
 
         return result;
     }

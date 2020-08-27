@@ -29,8 +29,8 @@ public class User extends SystemUser {
 
     private boolean reviewer;
 
-    @Formula("(SELECT us.status FROM USER_STATUSES us WHERE us.user_id = id ORDER BY us.created_date DESC LIMIT 1)")
-    @Enumerated(EnumType.STRING)
-    private UserStatuses status;
+//    @Formula("(SELECT us.status FROM USER_STATUSES us WHERE us.user_id = id ORDER BY us.created_date DESC LIMIT 1)")
+//    @Enumerated(EnumType.STRING)
+//    private UserStatuses status;
 
 }
