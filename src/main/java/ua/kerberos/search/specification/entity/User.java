@@ -20,10 +20,6 @@ public class User extends SystemUser {
     private String employeeNumber;
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
-
-    @ManyToOne
     @JoinColumn(name = "position_id")
     private Position position;
 

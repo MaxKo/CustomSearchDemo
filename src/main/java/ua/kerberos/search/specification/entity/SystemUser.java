@@ -53,5 +53,9 @@ public class SystemUser {
     @Fetch(FetchMode.SUBSELECT)
     private List<UserRole> roles = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    private Region region;
+
 
 }

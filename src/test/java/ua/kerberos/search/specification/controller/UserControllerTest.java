@@ -38,6 +38,22 @@ public class UserControllerTest {
 
     }
 
+    @Test
+    public void testSearchByFirstNameStat() throws Exception {
+
+        mvc.perform(get("/api/v1/users/stat")
+                .param("regionId", "2")
+                .param("firstName", "John")
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.content.*").isArray())
+                .andExpect(jsonPath("$.content[0].firstName").value("John"))
+        ;
+
+    }
+
 
     @Test
     public void testSearchByRoleId() throws Exception {
