@@ -42,7 +42,7 @@ public class UserController {
 //					)
 //			}
 //	)
-	public User find(@PathVariable @Min(1) Long id, @CookieValue(name = "cookie") String cookie) {
+	public User find(@PathVariable @Min(1) Long id) {
 		return userRepository.findById(id).orElseThrow(NotFoundException::new);
 	}
 
