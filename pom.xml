@@ -16,7 +16,7 @@
         <java.version>14</java.version>
         <h2database.version>1.4.200</h2database.version>
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
-        <commons-lang3.version>3.11</commons-lang3.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
