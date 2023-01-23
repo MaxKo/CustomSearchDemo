@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import ua.kerberos.search.specification.dto.Stat;
 import ua.kerberos.search.specification.dto.search.UserSearchSpecificationRequest;
 import ua.kerberos.search.specification.entity.User;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.criteria.Root;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 @Repository

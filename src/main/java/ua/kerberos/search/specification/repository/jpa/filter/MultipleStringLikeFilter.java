@@ -1,6 +1,6 @@
 package ua.kerberos.search.specification.repository.jpa.filter;
 
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Predicate;
 import java.util.Arrays;
 
 /**

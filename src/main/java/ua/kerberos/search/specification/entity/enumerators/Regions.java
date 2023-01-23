@@ -9,12 +9,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum Regions {
-    MOSCOW(3),
-    CHERKASY(1),
-    MINSK(2),
-    NEW_YORK(6),
-    LONDON(5),
-    WARSAW(4);
+    BERLIN(Countries.GERMANY),
+    CHERKASY(Countries.UKRAINE),
+    MINSK(Countries.BELARUS),
+    NEW_YORK(Countries.US),
+    LONDON(Countries.UK),
+    WARSAW( Countries.POLAND);
 
-    private final long countryId;
+    private final Countries country;
 }

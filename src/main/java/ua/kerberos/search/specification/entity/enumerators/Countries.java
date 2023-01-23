@@ -7,7 +7,7 @@ package ua.kerberos.search.specification.entity.enumerators;
 public enum Countries {
     UKRAINE,
     BELARUS,
-    RUSSIA,
+    GERMANY,
     POLAND,
     UK,
     US

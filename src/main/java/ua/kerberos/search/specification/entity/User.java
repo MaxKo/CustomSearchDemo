@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Formula;
 import ua.kerberos.search.specification.entity.enumerators.UserStatuses;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 /**

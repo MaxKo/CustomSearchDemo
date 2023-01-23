@@ -2,10 +2,10 @@ package ua.kerberos.search.specification.repository.jpa.filter;
 
 import lombok.SneakyThrows;
 
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Subquery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
 
 /**
  * Created by Maksym Kovieshnikov on 19/08/2020

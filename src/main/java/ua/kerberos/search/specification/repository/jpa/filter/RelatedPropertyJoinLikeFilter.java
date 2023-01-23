@@ -2,7 +2,7 @@ package ua.kerberos.search.specification.repository.jpa.filter;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.criteria.*;
+import jakarta.persistence.criteria.*;
 
 /**
  * Created by Maksym Kovieshnikov on 02/06/2020

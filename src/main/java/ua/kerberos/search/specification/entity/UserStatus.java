@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import ua.kerberos.search.specification.entity.enumerators.UserStatuses;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class UserStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private LocalDateTime createdDate;

@@ -9,4 +9,5 @@ import ua.kerberos.search.specification.entity.Position;
  */
 @Repository
 public interface PositionRepository extends JpaRepository<Position, Long> {
+	Position findByName(String name);
 }
